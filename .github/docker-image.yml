@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Checkout Actions'
+      uses: actions/checkout@v4
+
+    - name: 'Build the Docker image'
+      run: make docker
+
+    - name: 'Test the Docker image'
+      run: make docker_test
